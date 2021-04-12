@@ -9,6 +9,11 @@ public class Asteroid1Controller : MonoBehaviour
     Rigidbody2D rb;
     float forcePower;
 
+    float positionCloneY = 6.00f;
+    float positionCloneX = -12.0f;
+
+    private int frames = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,16 +28,19 @@ public class Asteroid1Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     
-        
+        frames++;
+
+        if(frames % 900 == 0) {
+            
+        }
     }
 
     void FixedUpdate() {
-        rb.velocity = new Vector3(0.6f, -0.40f, 0);
+        rb.velocity = new Vector3(0.85f, -0.60f, 0);
     }
 
      void OnBecameInvisible()
     {
-        Destroy(gameObject);
+       Destroy(gameObject);
     }
 }
