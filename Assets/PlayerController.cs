@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     GameObject player;
     Rigidbody2D rb;
     GameObject flame;
-    float thrust = 0.5f;
+    public float thrust = 0.5f;
     float forcePower;
     // Start is called before the first frame update
     void Start()
