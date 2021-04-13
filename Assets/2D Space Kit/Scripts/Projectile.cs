@@ -20,7 +20,6 @@ public class Projectile : MonoBehaviour {
 	
 	}
 	
-	
 	void OnTriggerEnter2D(Collider2D col) {
 
 		//Don't want to collide with the ship that's shooting this thing, nor another projectile.
