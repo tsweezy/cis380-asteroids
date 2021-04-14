@@ -18,8 +18,6 @@ public class ProjectileController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col) {
 
-        if(col.gameObject.tag.Equals("Asteroid 1")) {
-            ScoreController.scoreCount += 1;
-        }
+        
     }
 }

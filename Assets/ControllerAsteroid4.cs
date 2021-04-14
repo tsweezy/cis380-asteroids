@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Asteroid4Controller : MonoBehaviour
+public class ControllerAsteroid4 : MonoBehaviour
 {
 
     public GameObject asteroid;
@@ -35,7 +35,7 @@ public class Asteroid4Controller : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col) {
         if(col.gameObject.tag == "Projectile") {
-            ScoreController.scoreCount += 1;
+            ControllerScore.scoreCount += 1;
             Instantiate(explode_effect, transform.position, Quaternion.identity);
 			Destroy(gameObject);
         }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DustCloud1Controller : MonoBehaviour
+public class ControllerDust1 : MonoBehaviour
 {
 
     

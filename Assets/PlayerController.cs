@@ -19,6 +19,10 @@ public class PlayerController : MonoBehaviour
         flame.SetActive(false);
     }
 
+    void FixedUpdate() {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -53,8 +57,7 @@ public class PlayerController : MonoBehaviour
 
             /* If the flame's scale is below the maximum, position and scale
                flame with respect to player ship and forcePower respectively */
-            if (flame.transform.localScale.y < 1.5f)
-            {
+            if (flame.transform.localScale.y < 1.5f) {
                 flame.transform.localPosition = new Vector2(flame.transform.localPosition.x, flame.transform.localPosition.y + forcePower / 10.0f);
                 flame.transform.localScale = new Vector3(flame.transform.localScale.x + forcePower, flame.transform.localScale.y + forcePower, flame.transform.localScale.z);
             }
@@ -66,9 +69,8 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.W))
                 forcePower = 0f;
             
-        }
-        else /* When not pressing 'W', make flame invisible and reset transforms */
-        {
+        /* When not pressing 'W', make flame invisible and reset transforms */
+        } else {
             flame.SetActive(false);
             flame.transform.localScale = new Vector3(0.76f, 0.3333333f, 0);
             flame.transform.localPosition = new Vector2(-0.0036f, -0.034f);
