@@ -31,10 +31,6 @@ public class PlayerController : MonoBehaviour
         {
             forcePower = Time.deltaTime * thrust;
             rb.AddTorque(forcePower, ForceMode2D.Impulse);
-
-            /* Reset forcePower when letting go */
-            if (Input.GetKeyUp(KeyCode.A))
-                forcePower = 0f;
         }
 
         /* While holding 'A', set forcePower and rotate clockwise */
@@ -43,9 +39,6 @@ public class PlayerController : MonoBehaviour
             forcePower = Time.deltaTime * thrust;
             rb.AddTorque(-forcePower, ForceMode2D.Impulse);
 
-            /* Reset forcePower when letting go */
-            if (Input.GetKeyUp(KeyCode.D))
-                forcePower = 0f;
         }
 
         /* While holding 'W', make flame visbible, set forcePower, scale flame
