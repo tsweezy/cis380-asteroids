@@ -29,10 +29,7 @@ public class Projectile : MonoBehaviour {
 		}
 	}
 
-	public void setFiring_ship(GameObject gameObject) {
-		firing_ship = gameObject;
+	void OnBecameInvisible() {
+		Destroy(gameObject);
 	}
-	
-	
-	
 }
