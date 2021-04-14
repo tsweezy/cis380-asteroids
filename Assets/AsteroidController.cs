@@ -37,7 +37,7 @@ public class AsteroidController : MonoBehaviour
         }  
     }
 
-     void OnBecameInvisible()
+    void OnBecameInvisible()
     {
        Destroy(gameObject);
     }
