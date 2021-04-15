@@ -7,16 +7,24 @@ public class AsteroidManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //after 1 second every 3 seconds it will call SpawnAsteroid
+        InvokeRepeating("SpawnAsteroid", 1, 3);
     }
 
     // Update is called once per frame
     void Update()
     {
         // for now, we just spawn a new asteroid when we press 'Z', we should get this looped into a timed delay
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            // instantiate new asteroid GameObject
+        //if (Input.GetKeyDown(KeyCode.Z))
+        //{
+            
+        //}
+    }
+
+    //Hopefully spawns an asteroid
+    void SpawnAsteroid()
+    {
+        // instantiate new asteroid GameObject
             GameObject asteroid = Instantiate(Resources.Load("Asteroid")) as GameObject;
             Rigidbody2D asteroidRigidBody = asteroid.GetComponent<Rigidbody2D>();
             
@@ -26,6 +34,5 @@ public class AsteroidManager : MonoBehaviour
             asteroidRigidBody.velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
             asteroidRigidBody.rotation = Random.Range(0f, 360f);
             asteroidRigidBody.angularVelocity = Random.Range(-12f, 12f);
-        }
     }
 }
