@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    GameObject player;
     Rigidbody2D rb;
     GameObject flame;
     public float thrust = 0.5f;
@@ -12,8 +11,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
-        rb = GetComponent<Rigidbody2D>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
 
         flame = GameObject.Find("Flame");
         flame.SetActive(false);
@@ -77,11 +75,19 @@ public class PlayerController : MonoBehaviour
 
             /* Set transformations and force for projectile */
             projectileRigidBody.rotation = rb.rotation;
-            projectile.transform.position = player.transform.position;
-            projectileRigidBody.AddRelativeForce(new Vector2(0, 5f), ForceMode2D.Impulse);
+            projectile.transform.position = gameObject.transform.position;
+            projectileRigidBody.AddRelativeForce(new Vector2(0, rb.velocity.magnitude + 5f), ForceMode2D.Impulse);
 
             /* Add opposite force to ship */
-            rb.AddRelativeForce(new Vector2(0, -thrust / 2.0f), ForceMode2D.Impulse);
+            rb.AddRelativeForce(new Vector2(0, -thrust / 5f), ForceMode2D.Impulse);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Asteroid") {
+            Time.timeScale = 0;
+            Destroy(gameObject);
         }
     }
 }

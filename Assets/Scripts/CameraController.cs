@@ -26,11 +26,9 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
+        // the following is logic defining "soft" screen boundaries
         Vector3 targetPosition = target.transform.position;
         Vector2 targetVelocity = targetRb.velocity;
-
-        // targetPosition.y = Mathf.Clamp(targetPosition.y, -halfHeight + (targetSize.y / 2f), halfHeight - (targetSize.y / 2f));
-        // targetPosition.x = Mathf.Clamp(targetPosition.x, -halfWidth + (targetSize.x / 2f), halfWidth - (targetSize.x / 2f));
 
         targetPosition.y = Mathf.Clamp(targetPosition.y, -halfHeight, halfHeight);
         targetPosition.x = Mathf.Clamp(targetPosition.x, -halfWidth, halfWidth);
