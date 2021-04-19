@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AsteroidManager : MonoBehaviour
 {
+    int variantNumber = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,6 @@ public class AsteroidManager : MonoBehaviour
     void SpawnAsteroid()
     {
         // instantiate new asteroid GameObject
-        GameObject asteroid = Instantiate(Resources.Load("Asteroid"), gameObject.transform) as GameObject;
+        GameObject asteroid = Instantiate(Resources.Load("Asteroid" + variantNumber++ % 6), gameObject.transform) as GameObject;
     }
 }

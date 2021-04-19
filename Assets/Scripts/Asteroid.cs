@@ -32,7 +32,20 @@ public class Asteroid : MonoBehaviour
     {
         if (other.gameObject.tag == "Projectile")
         {
-            ControllerScore.scoreCount += 1;
+            switch(gameObject.name) {
+                case "Asteroid0(Clone)":
+                case "Asteroid1(Clone)":
+                case "Asteroid5(Clone)":
+                    ControllerScore.scoreCount += 10;
+                    break;
+                case "Asteroid4(Clone)":
+                case "Asteroid2(Clone)":
+                    ControllerScore.scoreCount += 5;
+                    break;
+                case "Asteroid3(Clone)":
+                    ControllerScore.scoreCount += 1;
+                    break;
+            }
             Instantiate(explode_effect, transform.position, Quaternion.identity);
 			Destroy(gameObject);
         }
