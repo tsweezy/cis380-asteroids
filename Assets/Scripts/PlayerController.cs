@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public float thrust = 0.5f;
     float forcePower;
     GameObject player;
+
+    public PolygonCollider2D m_col;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,8 @@ public class PlayerController : MonoBehaviour
         flame.SetActive(false);
 
         player = GameObject.Find("Player");
+        m_col = gameObject.GetComponent<PolygonCollider2D>();
+        m_col.enabled = true;
     }
 
     void FixedUpdate() {
@@ -96,8 +100,15 @@ public class PlayerController : MonoBehaviour
             //Time.timeScale = 0;
             //Destroy(gameObject);
             LivesController.lifeCount = LivesController.lifeCount - 1;
+            m_col.enabled = false;
+            StartCoroutine(PauseCollider());
             player.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width/2, Screen.height/2, Camera.main.nearClipPlane));
-
         }
+    }
+
+    IEnumerator PauseCollider() {
+        rb.velocity = Vector3.zero;
+        yield return new WaitForSeconds(2);
+        m_col.enabled = true;
     }
 }
