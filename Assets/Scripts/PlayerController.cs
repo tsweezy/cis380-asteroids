@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     GameObject flame;
     public float thrust = 0.5f;
     float forcePower;
+    GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +16,8 @@ public class PlayerController : MonoBehaviour
 
         flame = GameObject.Find("Flame");
         flame.SetActive(false);
+
+        player = GameObject.Find("Player");
     }
 
     void FixedUpdate() {
@@ -81,13 +84,20 @@ public class PlayerController : MonoBehaviour
             /* Add opposite force to ship */
             rb.AddRelativeForce(new Vector2(0, -thrust / 5f), ForceMode2D.Impulse);
         }
+
+        if(LivesController.lifeCount == 0) {
+            Time.timeScale = 0;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Asteroid") {
-            Time.timeScale = 0;
-            Destroy(gameObject);
+            //Time.timeScale = 0;
+            //Destroy(gameObject);
+            LivesController.lifeCount = LivesController.lifeCount - 1;
+            player.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width/2, Screen.height/2, Camera.main.nearClipPlane));
+
         }
     }
 }

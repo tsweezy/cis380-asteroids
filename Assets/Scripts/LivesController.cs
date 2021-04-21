@@ -17,6 +17,6 @@ public class LivesController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lives.text = "Score: " + lifeCount;
+        lives.text = "Lives: " + lifeCount;
     }
 }
