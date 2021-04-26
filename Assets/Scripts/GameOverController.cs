@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameOverController : MonoBehaviour
 {
-
     public GameObject text;
 
     public static int gameOver = 0;
@@ -27,6 +27,7 @@ public class GameOverController : MonoBehaviour
             myVal.enabled = true;
 
             if(Input.GetKey(KeyCode.V)) {
+                SceneManager.LoadScene("SampleScene");
                 myVal.enabled = false;
                 LivesController.lifeCount = 3;
                 ControllerScore.scoreCount = 0;

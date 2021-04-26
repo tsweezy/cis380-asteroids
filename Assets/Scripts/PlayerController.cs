@@ -11,7 +11,9 @@ public class PlayerController : MonoBehaviour
     GameObject player;
 
     GameObject gameOver;
-    public PolygonCollider2D m_col;
+    public PolygonCollider2D playerCollider;
+    private SpriteRenderer playerSprite;
+    private bool invincible = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +24,9 @@ public class PlayerController : MonoBehaviour
         flame.SetActive(false);
 
         player = GameObject.Find("Player");
-        m_col = gameObject.GetComponent<PolygonCollider2D>();
-        m_col.enabled = true;
+        playerCollider = gameObject.GetComponent<PolygonCollider2D>();
+        playerCollider.enabled = true;
+        playerSprite = gameObject.GetComponent<SpriteRenderer>();
     }
 
     void FixedUpdate() {
@@ -45,7 +48,6 @@ public class PlayerController : MonoBehaviour
         {
             forcePower = Time.deltaTime * thrust;
             rb.AddTorque(-forcePower, ForceMode2D.Impulse);
-
         }
 
         /* While holding 'W', make flame visbible, set forcePower, scale flame
@@ -99,17 +101,22 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Asteroid") {
+        if (other.gameObject.tag == "Asteroid" && invincible != true) {
             LivesController.lifeCount = LivesController.lifeCount - 1;
-            m_col.enabled = false;
             StartCoroutine(PauseCollider());
             player.transform.position = Vector2.zero;
         }
     }
 
     IEnumerator PauseCollider() {
+        invincible = true;
         rb.velocity = Vector3.zero;
+        rb.angularVelocity = 0.0f;
+        rb.rotation = 0.0f;
+        playerSprite.color = new Color(1f, 1f, 1f, 0.5f);
         yield return new WaitForSeconds(2);
-        m_col.enabled = true;
+        invincible = false;
+        playerSprite.color = new Color(1f, 1f, 1f, 1f);
+
     }
 }
