@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
             LivesController.lifeCount = LivesController.lifeCount - 1;
             m_col.enabled = false;
             StartCoroutine(PauseCollider());
-            player.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width/2, Screen.height/2, Camera.main.nearClipPlane));
+            player.transform.position = Vector2.zero;
         }
     }
 
