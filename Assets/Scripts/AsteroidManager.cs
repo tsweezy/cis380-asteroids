@@ -8,8 +8,7 @@ public class AsteroidManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //after 1 second every 3 seconds it will call SpawnAsteroid
-        InvokeRepeating("SpawnAsteroid", 1, 3);
+        StartCoroutine(SpawnAsteroid());
     }
 
     // Update is called once per frame
@@ -18,10 +17,21 @@ public class AsteroidManager : MonoBehaviour
         
     }
 
-    //Hopefully spawns an asteroid
-    void SpawnAsteroid()
+    // Spawns an asteroid at increasing intervals
+    IEnumerator SpawnAsteroid()
     {
-        // instantiate new asteroid GameObject
-        GameObject asteroid = Instantiate(Resources.Load("Asteroid" + variantNumber++ % 6), gameObject.transform) as GameObject;
+        float delay = 5f;
+        while(true)
+        {
+            print(delay);
+            if (delay >= 0.125f)
+                delay -= 0.0625f;
+            if (Physics2D.OverlapCircle(gameObject.transform.position, 0.75f) == null)
+            {
+                // instantiate new asteroid GameObject
+                Instantiate(Resources.Load("Asteroid" + variantNumber++ % 6), gameObject.transform);
+            }
+            yield return new WaitForSeconds(delay);
+        }
     }
 }
