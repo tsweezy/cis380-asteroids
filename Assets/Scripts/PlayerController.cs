@@ -100,8 +100,6 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Asteroid") {
-            //Time.timeScale = 0;
-            //Destroy(gameObject);
             LivesController.lifeCount = LivesController.lifeCount - 1;
             m_col.enabled = false;
             StartCoroutine(PauseCollider());

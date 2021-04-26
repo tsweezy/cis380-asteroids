@@ -23,7 +23,6 @@ public class AsteroidManager : MonoBehaviour
         float delay = 5f;
         while(true)
         {
-            print(delay);
             if (delay >= 0.125f)
                 delay -= 0.0625f;
             if (Physics2D.OverlapCircle(gameObject.transform.position, 0.75f) == null)
