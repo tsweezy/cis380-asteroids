@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviour
     float forcePower;
     GameObject player;
 
+    GameObject gameOver;
     public PolygonCollider2D m_col;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,6 +92,7 @@ public class PlayerController : MonoBehaviour
         }
 
         if(LivesController.lifeCount == 0) {
+            GameOverController.gameOver = 1;
             Time.timeScale = 0;
         }
     }
